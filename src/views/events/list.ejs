@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Inicio</title>
+</head>
+
+<body>
+    <h4>Bienvenido a HobbyBuddy</h4>
+    <% if(!current_user){ %>
+        <a href="/iniciar_sesion">Iniciar sesion</a>
+        <a class="nav-link" href="/registro">Registro</a>
+        <% }else{ %>
+            <h2> Sesión iniciada para <%= current_user.name %>
+            </h2>
+            <a href="/cerrar_sesion">Logout</a>
+            <% } %>
+</body>

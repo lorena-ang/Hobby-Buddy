@@ -10,6 +10,9 @@ const path = require('path');
 
 const User = require('./models/user');
 
+const auth = require('./controllers/auth');
+const events = require('./controllers/events');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -56,6 +59,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', auth);
+app.use('/eventos', events);
 app.use(express.static('src/views/public'));
 
 const dbUrl = process.env.DB_URL || "mongodb://localhost/HobbyBuddy";
