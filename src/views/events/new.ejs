@@ -1,0 +1,30 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nuevo evento</title>
+</head>
+
+<body>
+    <h4>Crear Evento</h4>
+    <form action='/eventos/crear' method='POST'>
+        <input type="text" placeholder="Nombre de evento" name="event[name]" required>
+        <input type="text" placeholder="Descripción" name="event[description]" required>
+        <input type="text" placeholder="Fecha(s)" name="event[date]" required>
+        <input type="text" placeholder="Horario" name="event[time]" required>
+        <input type="radio" name="event[category" value="Presencial"> Presencial
+        <input type="radio" name="event[category]" value="Virtual"> Virtual
+        <select name="event[tag]" required>
+            <option value="Aprendizaje">Aprendizaje</option>
+            <option value="Actividad física">Actividad Física</option>
+            <option value="Música">Música</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="Amistad">Amistad</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <input type="text" placeholder="Imagen" name="event[image]" required>
+        <button class="btn1 mt-3 mb-5">Regresar</button>
+        <button class="btn1 mt-3 mb-5">Aceptar</button>
+    </form>
+</body>

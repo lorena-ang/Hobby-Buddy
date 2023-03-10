@@ -14,5 +14,30 @@
             <h2> Sesión iniciada para <%= current_user.name %>
             </h2>
             <a href="/cerrar_sesion">Logout</a>
+            <a href="/eventos/crear">Crear evento</a>
             <% } %>
+                <% if(events) { %>
+                    <% events.forEach(event=> { %>
+                        <div style="position: relative; max-width: 200px;">
+                            <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>"
+                                    alt="<%= event.name %> image" name="saveForm" class="eventImg submit" id="saveForm"
+                                    style="max-width: 150px; max-height: 100px;" /></a>
+                            <h2 class="pt-2"><a class="event-name" href="/events/<%= event._id %>">
+                                    <%= event.name %>
+                                </a></h2>
+                            <h4>Fecha(s) <%= event.date %>
+                            </h4>
+                            <h4>Horario <%= event.time %>
+                            </h4>
+                            <h4>Descripción <%= event.description %>
+                            </h4>
+                            <h4>Creado el <%= event.time %> por <%= event.organizer %>
+                            </h4>
+                            <h4>Categoría <%= event.category %>
+                            </h4>
+                            <h4>Tag <%= event.tag %>
+                            </h4>
+                        </div>
+                        <% }); %>
+                            <% } %>
 </body>

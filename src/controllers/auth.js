@@ -10,7 +10,7 @@ router.get('/registro', (req, res) => {
         console.log('Para registrar una nueva cuenta, termine su sesión primero');
         return res.redirect('/eventos');
     }
-    res.render('./auth/register', { page: 'registro' });
+    res.render('./auth/register', { page: 'register' });
 });
 
 router.post('/registro', async (req, res) => {
@@ -43,7 +43,7 @@ router.get('/iniciar_sesion', (req, res) => {
         console.log('Tienes una sesión activa, si quieres iniciar sesión con otra cuenta termina esta sesión primero');
         return res.redirect('/eventos');
     }
-    res.render('./auth/login', { page: 'iniciar_sesion' });
+    res.render('./auth/login', { page: 'login' });
 });
 
 router.post('/iniciar_sesion', passport.authenticate('local', { failureFlash: true, failureRedirect: '/iniciar_sesion' }), (req, res) => {
