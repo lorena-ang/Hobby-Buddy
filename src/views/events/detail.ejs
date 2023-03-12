@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Detalle</title>
+</head>
+
+<body>
+    <h1>
+        <%= event.name %>
+    </h1>
+    <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>" alt="<%= event.name %> image"
+            name="saveForm" class="eventImg submit" id="saveForm" style="max-width: 150px; max-height: 100px;" /></a>
+    <h4>Fecha(s) <%= event.date %>
+    </h4>
+    <h4>Horario <%= event.time %>
+    </h4>
+    <h4>Descripción <%= event.description %>
+    </h4>
+    <h4>Creado el <%= event.createdAt %> por <%= event.organizer.name %>
+    </h4>
+    <h4>Categoría <%= event.category %>
+    </h4>
+    <h4>Tag <%= event.tag %>
+    </h4>
+
+</body>
