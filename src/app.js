@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const flash = require("connect-flash");
+const methodOverride = require('method-override')
 const path = require('path');
 
 const User = require('./models/user');
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 app.locals.moment = require('moment');
 app.locals.moment.locale();
@@ -62,6 +64,7 @@ app.use((req, res, next) => {
 app.use('/', auth);
 app.use('/eventos', events);
 app.use(express.static('src/views/public'));
+app.use(methodOverride('_method'))
 
 const dbUrl = process.env.DB_URL || "mongodb://localhost/HobbyBuddy";
 mongoose.connect(dbUrl, {

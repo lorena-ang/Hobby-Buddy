@@ -1,5 +1,5 @@
 const express = require('express');
-const { isLoggedIn, isEventAuthor } = require('../middleware');
+const { isLoggedIn, isEventOrganizer } = require('../middleware');
 const { handle } = require('../utilis');
 
 const Event = require('../models/event');
@@ -8,8 +8,7 @@ const Comment = require('../models/comment');
 var router = express.Router();
 
 router.get('/', async (req, res) => {
-    const [events, e] = await handle(Event.find().populate('organizer'));
-    console.log(events);
+    const [events, e] = await handle(Event.find().populate('organizer').sort({ 'createdAt': 'desc' }));
 
     if (e) {
         console.log(e);
@@ -41,7 +40,6 @@ router.post('/crear', isLoggedIn, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let [event, e] = await handle(Event.findOne({ _id: req.params.id }).populate(['organizer']).populate({ path: 'comments', populate: { path: 'author' }, options: { sort: { 'createdAt': 'desc' } } }).exec());
-    console.log(event);
     if (e || event === null) {
         console.log(e);
         return;
@@ -50,5 +48,11 @@ router.get('/:id', async (req, res) => {
     res.render('events/detail', { event, user: req.user });
 });
 
+router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
+    const { id } = req.params;
+    await Event.findByIdAndDelete(id);
+    console.log('Evento borrado');
+    res.redirect('/eventos');
+});
 
 module.exports = router;
