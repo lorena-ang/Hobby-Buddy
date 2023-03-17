@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Mis eventos</title>
+</head>
+
+<body>
+    <h1>
+        Mis eventos
+    </h1>
+    <% if(events) { %>
+        <% events.forEach(event=> { %>
+            <div style="position: relative; max-width: 200px;">
+                <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>"
+                        alt="<%= event.name %> image" name="saveForm" class="eventImg submit" id="saveForm"
+                        style="max-width: 150px; max-height: 100px;" /></a>
+                <h2 class="pt-2"><a class="event-name" href="/eventos/<%= event._id %>">
+                        <%= event.name %>
+                    </a></h2>
+                <h4>Descripción <%= event.description %>
+                </h4>
+            </div>
+            <% }); %>
+                <% } %>
+</body>

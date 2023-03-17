@@ -13,6 +13,7 @@ const User = require('./models/user');
 
 const auth = require('./controllers/auth');
 const events = require('./controllers/events');
+const users = require('./controllers/users');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 
 app.use('/', auth);
 app.use('/eventos', events);
+app.use('/mis_eventos', users);
 app.use(express.static('src/views/public'));
 app.use(methodOverride('_method'))
 
