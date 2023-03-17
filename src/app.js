@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 
 app.locals.moment = require('moment');
-app.locals.moment.locale();
+app.locals.moment.locale('es-mx');
 
 const secret = process.env.SESSION_SECRET || 'fuCQR?cNtrIugPMqpPPu29P-M';
 const sessionConfig = {

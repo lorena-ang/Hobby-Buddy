@@ -33,4 +33,60 @@
             <h4>Tag <%= event.tag %>
             </h4>
 
+            <div>
+                <% if (current_user) { %>
+                    <div>
+                        <form action="/eventos/<%= event._id %>/comentarios" method="POST">
+                            <div class="form-group">
+                                <label for="text" class="form-label pt-2">Deja un comentario</label>
+                                <textarea name="text" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <% } %>
+                        <% if (event.amountOfComments> 0) { %>
+                            <% event.comments.forEach(comment=> { %>
+                                <div class="card px-4 pt-3">
+                                    <small class="author font-weight-bold">
+                                        <%= comment.author.name %>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-dot text-light" viewBox="0 0 16 16">
+                                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                            </svg>
+                                            <em class="text-light font-weight-light">
+                                                <%= moment(comment.createdAt).fromNow() %>
+                                            </em>
+                                            <span>
+                                                <% if (current_user && (comment.author._id.equals(current_user._id))) {
+                                                    %>
+                                                    <form class="float-right"
+                                                        action="/eventos/<%= event._id %>/comentarios/<%= comment._id %>?_method=DELETE"
+                                                        method="POST">
+                                                        <button class="btn btn-sm delete-btn mr-1 mt-2 pb-1"
+                                                            style="width: 28px; height: 28px; padding: 0;"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="12"
+                                                                height="12" fill="currentColor" class="bi bi-trash-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                                            </svg></button>
+                                                    </form>
+                                                    <% } %>
+                                            </span>
+                                    </small>
+                                    <p>
+                                        <%= comment.text %>
+                                    </p>
+                                    <hr>
+                                </div>
+                                <% }); %>
+                                    <% } else { %>
+                                        <div class="card px-4 pb-4 mb-3">
+                                            <p class="text-center mb-0">No hay comentarios en este momento.</p>
+                                        </div>
+                                        <% } %>
+            </div>
 </body>

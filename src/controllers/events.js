@@ -4,6 +4,7 @@ const { handle } = require('../utilis');
 
 const Event = require('../models/event');
 const Comment = require('../models/comment');
+const CommentsController = require('./comments')
 
 var router = express.Router();
 
@@ -23,9 +24,9 @@ router.get('/crear', isLoggedIn, (req, res) => {
 });
 
 router.post('/crear', isLoggedIn, async (req, res) => {
-    console.log(req.body.event);
     const event = new Event(req.body.event);
     event.organizer = req.user._id;
+    event.amountOfComments = 0;
 
     const [new_event, e] = await handle(event.save());
 
@@ -54,5 +55,7 @@ router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
     console.log('Evento borrado');
     res.redirect('/eventos');
 });
+
+router.use('/:id/comentarios/', CommentsController);
 
 module.exports = router;
