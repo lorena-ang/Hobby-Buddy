@@ -1,0 +1,72 @@
+:root {
+    --bg-color: rgba(29, 31, 35);
+    --bg-color-1: #232529;
+    --primary: #49a09d;
+    --secondary: #367977;
+}
+
+.gradient-custom {
+    background: #4a2c82;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #49a09d, #4a2c82);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #49a09d, #4a2c82);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.btn-custom {
+    background-color: #49a09d;
+    border: none;
+    color: white;
+}
+
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active {
+    background-color: #3c8785;
+    border: none;
+    color: white;
+}
+
+.navbar {
+    background-color: #232529 !important;
+    box-shadow: 1px 6px 3px -1px rgba(28, 28, 28, 0.35);
+}
+
+.navbar-img {
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
+.navbar-btn {
+    padding: 6px;
+    margin-bottom: 4px;
+}
+
+.navbar-link, .erase-link {
+    color: #49a09d;
+}
+
+.navbar-user {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    text-decoration: none;
+}

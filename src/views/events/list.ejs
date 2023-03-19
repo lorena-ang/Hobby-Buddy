@@ -1,44 +1,45 @@
-<!doctype html>
-<html lang="en">
+<%- include (".././partials/header") %>
+    <title>HobbyBuddy | Página principal</title>
 
-<head>
-    <title>Inicio</title>
-</head>
-
-<body>
-    <h4>Bienvenido a HobbyBuddy</h4>
     <% if(!current_user){ %>
-        <a href="/iniciar_sesion">Iniciar sesion</a>
-        <a class="nav-link" href="/registro">Registro</a>
-        <% }else{ %>
-            <h2> Sesión iniciada para <%= current_user.name %>
-            </h2>
-            <a href="/cerrar_sesion">Logout</a>
-            <a href="/eventos/crear">Crear evento</a>
-            <a href="/mis_eventos">Mis eventos</a>
-            <% } %>
-                <% if(events) { %>
-                    <% events.forEach(event=> { %>
-                        <div style="position: relative; max-width: 200px;">
-                            <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>"
-                                    alt="<%= event.name %> image" name="saveForm" class="eventImg submit" id="saveForm"
-                                    style="max-width: 150px; max-height: 100px;" /></a>
-                            <h2 class="pt-2"><a class="event-name" href="/eventos/<%= event._id %>">
-                                    <%= event.name %>
-                                </a></h2>
-                            <h4>Fecha(s) <%= event.date %>
-                            </h4>
-                            <h4>Horario <%= event.time %>
-                            </h4>
-                            <h4>Descripción <%= event.description %>
-                            </h4>
-                            <h4>Creado el <%= event.createdAt %> por <%= event.organizer.name %>
-                            </h4>
-                            <h4>Categoría <%= event.category %>
-                            </h4>
-                            <h4>Tag <%= event.tag %>
-                            </h4>
-                        </div>
-                        <% }); %>
-                            <% } %>
-</body>
+        <%- include (".././partials/navbar-login") %>
+            <% }else{ %>
+                <%- include (".././partials/navbar") %>
+                    <% } %>
+
+                        <h4>Bienvenido a HobbyBuddy</h4>
+                        <% if(!current_user){ %>
+                            <a href="/iniciar_sesion">Iniciar sesion</a>
+                            <a class="nav-link" href="/registro">Registro</a>
+                            <% }else{ %>
+                                <h2> Sesión iniciada para <%= current_user.name %>
+                                </h2>
+                                <a href="/eventos/crear">Crear evento</a>
+                                <% } %>
+                                    <% if(events) { %>
+                                        <% events.forEach(event=> { %>
+                                            <div style="position: relative; max-width: 200px;">
+                                                <a href="/eventos/<%= event._id %>"><input type="image"
+                                                        src="<%= event.image %>" alt="<%= event.name %> image"
+                                                        name="saveForm" class="eventImg submit" id="saveForm"
+                                                        style="max-width: 150px; max-height: 100px;" /></a>
+                                                <h2 class="pt-2"><a class="event-name" href="/eventos/<%= event._id %>">
+                                                        <%= event.name %>
+                                                    </a></h2>
+                                                <p>Fecha(s): <%= event.date %>
+                                                </p>
+                                                <p>Horario: <%= event.time %>
+                                                </p>
+                                                <p>Descripción: <%= event.description %>
+                                                </p>
+                                                <p>Creado <%= event.createdAt %> por <%= event.organizer.name %>
+                                                </p>
+                                                <p>Categoría: <%= event.category %>
+                                                </p>
+                                                <p>Tag: <%= event.tag %>
+                                                </p>
+                                            </div>
+                                            <% }); %>
+                                                <% } %>
+
+                                                    <%- include (".././partials/footer") %>

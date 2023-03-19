@@ -1,17 +1,44 @@
-<!doctype html>
+<%- include (".././partials/header") %>
+    <title>HobbyBuddy | Iniciar sesión</title>
+    <%- include (".././partials/navbar-login") %>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Iniciar sesión</title>
-</head>
+        <section class="gradient-custom vh-100">
+            <div class="container h-100 py-3">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5 mt-5 pt-2">
+                        <div class="card bg-dark text-white border-0" style="border-radius: 1rem;">
+                            <div class="card-body p-5">
+                                <div class="mx-2">
+                                    <div class="text-center">
+                                        <h2 class="fw-bold mb-2">Inicia sesión</h2>
+                                        <p class="text-white-50 mb-5">¡Conecta con gente como tú!</p>
+                                    </div>
 
-<body>
-    <h4>Inicia sesión</h4>
-    <form action='/iniciar_sesion' method='POST'>
-        <input type="email" placeholder="Email" name="email" required>
-        <input type="password" placeholder="Contraseña" name="password" required>
-        <button class="btn1 mt-3 mb-5">Iniciar sesión</button>
-        <p>No tienes cuenta? <a href="/registro">Registrate aquí</a></p>
-    </form>
-</body>
+                                    <form action='/iniciar_sesion' method='POST'>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label left-align" for="email">Correo
+                                                electrónico:</label>
+                                            <input class="form-control" type="email" name="email" required>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="password">Contraseña:</label>
+                                            <input class="form-control" type="password" name="password" required>
+                                        </div>
+
+                                        <div class="text-center mb-4">
+                                            <button class="btn btn-outline-light btn-lg my-4 px-5" type="submit">Iniciar
+                                                sesión</button>
+                                            <p>¿Aún no tienes cuenta? <a href="/registro">Regístrate
+                                                    aquí.</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include (".././partials/footer") %>
