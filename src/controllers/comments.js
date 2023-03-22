@@ -40,11 +40,27 @@ router.post('/', isLoggedIn, async (req, res) => {
     res.redirect(`/eventos/${req.params.id}`)
 });
 
-router.delete('/:id', isLoggedIn, isCommentAuthor, async (req, res) => {
-    const { id } = req.params;
-    await Comment.findByIdAndDelete(id);
+router.delete('/:commentId', isLoggedIn, isCommentAuthor, async (req, res) => {
+    await Comment.findByIdAndDelete(req.params.commentId);
     console.log("Comentario borrado");
-    res.redirect(`/games/${req.params.gameID}/posts/${req.params.postID}`)
+    
+    const [event, e_event] = await handle(Event.findOne({ _id: req.params.id }).exec());
+
+    if (e_event || event === null) {
+        console.log(e_event);
+        return;
+    }
+
+    event.amountOfComments = event.amountOfComments - 1;
+
+    const [_, e_event_saved] = await handle(event.save());
+
+    if (e_event_saved) {
+        console.log(e_event_saved);
+        return;
+    }
+
+    res.redirect(`/eventos/${req.params.id}/`);
 });
 
 module.exports = router;

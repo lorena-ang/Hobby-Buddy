@@ -50,9 +50,14 @@ router.get('/:id', async (req, res) => {
 });
 
 router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
-    const { id } = req.params;
-    await Event.findByIdAndDelete(id);
-    console.log('Evento borrado');
+    const [event_deleted, e] = await handle(Event.findByIdAndDelete(req.params.id));
+
+    if (e || event_deleted === null) {
+        console.log(e);
+        return;
+    }
+
+    await Comment.deleteMany({ _id: { $in: event_deleted.comments } });
     res.redirect('/eventos');
 });
 

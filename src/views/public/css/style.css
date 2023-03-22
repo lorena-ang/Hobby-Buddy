@@ -29,6 +29,13 @@ a:hover {
     text-decoration: none;
 }
 
+input[type=text],
+textarea {
+    background-color: var(--bg-color-1) !important;
+    border-color: rgb(72, 72, 72) !important;
+    color: rgb(170, 170, 170) !important;
+}
+
 .btn-custom {
     background-color: #49a09d;
     border: none;
@@ -41,6 +48,45 @@ a:hover {
     background-color: #3c8785;
     border: none;
     color: white;
+}
+
+.btn-outline-light-2 {
+    background-color: white;
+    width: 110px;
+}
+
+.btn-outline-light-2:hover,
+.btn-outline-light-2:active,
+.btn-outline-light-2:focus {
+    background: none;
+    border-color: white;
+    width: 110px;
+    margin: 0px;
+}
+
+.btn-submit {
+    width: 100%;
+}
+
+.comment-card {
+    background-color: var(--bg-color);
+    border: none
+}
+
+.event-card-text {
+    margin-right: 50px;
+}
+
+.event-tags {
+    color: rgb(170, 170, 170);
+}
+
+.form-label {
+    margin-bottom: 6px;
+}
+
+.left-align {
+    text-align: left;
 }
 
 .navbar {
@@ -62,6 +108,10 @@ a:hover {
     color: #49a09d;
 }
 
+.erase-link:hover {
+    color: #367977;
+}
+
 .navbar-user {
     display: block;
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
@@ -69,4 +119,13 @@ a:hover {
     font-weight: var(--bs-nav-link-font-weight);
     color: var(--bs-nav-link-color);
     text-decoration: none;
+}
+
+.postInfo {
+    background-image: linear-gradient(#2c233e, rgba(29, 31, 35));
+    color: white;
+}
+
+.right-align {
+    text-align: right;
 }
