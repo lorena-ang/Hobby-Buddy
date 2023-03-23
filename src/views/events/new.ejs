@@ -2,25 +2,60 @@
     <title>HobbyBuddy | Crear actividad</title>
     <%- include (".././partials/navbar") %>
 
-        <h4>Crear Evento</h4>
-        <form action='/eventos/crear' method='POST'>
-            <input type="text" placeholder="Nombre de evento" name="event[name]" required>
-            <input type="text" placeholder="Descripción" name="event[description]" required>
-            <input type="text" placeholder="Fecha(s)" name="event[date]" required>
-            <input type="text" placeholder="Horario" name="event[time]" required>
-            <input type="radio" name="event[category]" value="Presencial"> Presencial
-            <input type="radio" name="event[category]" value="Virtual"> Virtual
-            <select name="event[tag]" required>
-                <option value="Aprendizaje">Aprendizaje</option>
-                <option value="Actividad física">Actividad Física</option>
-                <option value="Música">Música</option>
-                <option value="Entretenimiento">Entretenimiento</option>
-                <option value="Amistad">Amistad</option>
-                <option value="Otro">Otro</option>
-            </select>
-            <input type="text" placeholder="Imagen" name="event[image]" required>
-            <button class="btn1 mt-3 mb-5">Regresar</button>
-            <button class="btn1 mt-3 mb-5">Aceptar</button>
-        </form>
+        <div class="container p-5 h-100">
+            <div class="row">
+                <div class="col mx-5">
+                    <h2 class="text-center my-3 pb-3">Crear actividad</h2>
+                    <form action='/eventos/crear' method='POST'>
+                        <div class="form-group mb-3">
+                            <label for="event-name" class="form-label">Nombre de actividad:</label>
+                            <input type="text" class="form-control" id="event-name" name="event[name]" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-description" class="form-label">Descripción:</label>
+                            <textarea class="form-control" id="event-description" name="event[description]" rows="4"
+                                required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-date" class="form-label">Fecha(s):</label>
+                            <input type="text" class="form-control" id="event-date" name="event[date]" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-time" class="form-label">Horario(s):</label>
+                            <input type="text" class="form-control" id="event-time" name="event[time]" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-category">Tipo de evento: </label>
+                            <input type="radio" class="form-radio" id="event-category" name="event[category]"
+                                value="Presencial"><span class="label-secondary">Presencial</span>
+                            <input type="radio" class="form-radio" id="event-category" name="event[category]"
+                                value="Virtual"><span class="label-secondary">Virtual</span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-tag" class="form-label">Tag:</label>
+                            <select id="event-tag" class="form-select" name="event[tag]" required>
+                                <option selected="true" disabled="disabled">
+                                    Selecciona una opción.</option>
+                                <option value="Aprendizaje">Aprendizaje</option>
+                                <option value="Actividad física">Actividad Física</option>
+                                <option value="Música">Música</option>
+                                <option value="Entretenimiento">Entretenimiento</option>
+                                <option value="Amistad">Amistad</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-img" class="form-label">Imagen:</label>
+                            <input type="text" class="form-control" id="event-img" name="event[image]" required>
+                        </div>
+                        <div class="text-center mt-4 py-2">
+                            <a class="btn btn-outline-light btn-lg" style=" width: 120px" href="/eventos">Regresar</a>
+                            <span class="mx-1"></span>
+                            <button class="btn btn-custom btn-lg" style="width: 120px">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <%- include (".././partials/footer") %>
