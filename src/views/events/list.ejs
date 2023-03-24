@@ -7,39 +7,42 @@
                 <%- include (".././partials/navbar") %>
                     <% } %>
 
-                        <h4>Bienvenido a HobbyBuddy</h4>
-                        <% if(!current_user){ %>
-                            <a href="/iniciar_sesion">Iniciar sesion</a>
-                            <a class="nav-link" href="/registro">Registro</a>
-                            <% }else{ %>
-                                <h2> Sesión iniciada para <%= current_user.name %>
-                                </h2>
+                        <div class="container text-center my-5 mx-auto">
+                            <h3>Bienvenido a HobbyBuddy</h3>
+                            <% if(current_user){ %>
                                 <a href="/eventos/crear">Crear evento</a>
+                                <br><br>
                                 <% } %>
                                     <% if(events) { %>
                                         <% events.forEach(event=> { %>
-                                            <div style="position: relative; max-width: 200px;">
-                                                <a href="/eventos/<%= event._id %>"><input type="image"
-                                                        src="<%= event.image %>" alt="<%= event.name %> image"
-                                                        name="saveForm" class="eventImg submit" id="saveForm"
-                                                        style="max-width: 150px; max-height: 100px;" /></a>
-                                                <h2 class="pt-2"><a class="event-name" href="/eventos/<%= event._id %>">
-                                                        <%= event.name %>
-                                                    </a></h2>
-                                                <p>Fecha(s): <%= event.date %>
-                                                </p>
-                                                <p>Horario: <%= event.time %>
-                                                </p>
-                                                <p>Descripción: <%= event.description %>
-                                                </p>
-                                                <p>Creado <%= event.createdAt %> por <%= event.organizer.name %>
-                                                </p>
-                                                <p>Categoría: <%= event.category %>
-                                                </p>
-                                                <p>Tag: <%= event.tag %>
-                                                </p>
+                                            <div class="card bg-dark mx-5 px-5 py-4">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="/eventos/<%= event._id %>"><input type="image"
+                                                                src="<%= event.image %>" alt="<%= event.name %> image"
+                                                                name="saveForm" class="submit" id="saveForm"
+                                                                style="max-width: 200px; max-height: 150px;" /></a>
+                                                        <h2 class="pt-2"><a href="/eventos/<%= event._id %>">
+                                                                <%= event.name %>
+                                                            </a></h2>
+                                                        <p>Fecha(s): <%= event.date %>
+                                                        </p>
+                                                        <p>Horario: <%= event.time %>
+                                                        </p>
+                                                        <p>Descripción: <%= event.description %>
+                                                        </p>
+                                                        <p>Creado <%= event.createdAt %> por <%= event.organizer.name %>
+                                                        </p>
+                                                        <p>Categoría: <%= event.category %>
+                                                        </p>
+                                                        <p>Tag: <%= event.tag %>
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <% }); %>
                                                 <% } %>
 
-                                                    <%- include (".././partials/footer") %>
+                        </div>
+
+                        <%- include (".././partials/footer") %>
