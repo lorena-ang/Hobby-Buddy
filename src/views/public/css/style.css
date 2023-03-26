@@ -79,8 +79,28 @@ select {
     border: none
 }
 
+.custom-font-size {
+    font-size: 14px;
+}
+
+.event-card {
+    background-color: var(--bg-color-1);
+    border-radius: 15px;
+    box-shadow: 6px 6px 11px -5px #49686a;
+    color: white;
+}
+
 .event-card-text {
     margin-right: 50px;
+}
+
+.event-comments {
+    color: rgb(170, 170, 170);
+    font-size: small;
+}
+
+.event-img {
+    border-radius: 15px 0px 0px 0px !important;
 }
 
 .event-tags {

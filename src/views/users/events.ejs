@@ -2,30 +2,60 @@
     <title>HobbyBuddy | Mis publicaciones</title>
     <%- include (".././partials/navbar") %>
 
-        <div class="container text-center my-5 mx-auto">
-            <h3>Mis publicaciones</h3>
-            <br>
+        <div class="container p-5 h-100">
+            <h2 class="text-center pb-3">Mis publicaciones</h2>
             <% if(events) { %>
                 <% events.forEach(event=> { %>
-                    <div class="card bg-dark mx-5 px-5 py-4">
+                    <div class="card event-card border-0 mx-5" style="margin-bottom: 30px;">
                         <div class="row">
-                            <div class="col">
-                                <div>
-                                    <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>"
-                                            alt="<%= event.name %> image" name="saveForm" class="submit" id="saveForm"
-                                            style="max-width: 200px; max-height: 150px;" /></a>
-                                    <h2 class="pt-2"><a href="/eventos/<%= event._id %>">
-                                            <%= event.name %>
-                                        </a></h2>
-                                    <p>Descripción: <%= event.description %>
-                                    </p>
-                                    <p>Comentarios: <%= event.amountOfComments %>
+                            <div class="col-md-4">
+                                <a href="/eventos/<%= event._id %>"><input type="image" src="<%= event.image %>"
+                                        alt="<%= event.name %> image" name="saveForm" class="event-img img-fluid"
+                                        id="saveForm" /></a>
+                                <div class="custom-font-size text-center mt-2 mb-3"><span>
+                                        <%= event.amountOfComments %> Comentarios
+                                    </span>
+                                    <span class="event-comments">• </span>
+                                    <span>
+                                        <%= event.amountOfApplications %> Aplicantes
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="card-title mt-3 mx-3"><a href="/eventos/<%= event._id %>">
+                                        <%= event.name %>
+                                    </a></h4>
+                                <div class="custom-font-size">
+                                    <div class="event-card-text mx-3" style="padding-right: 20px;">
+                                        <p>
+                                            <%= event.description %>
+                                        </p>
+                                        <p><span class="event-tags">Fecha(s): </span>
+                                            <%= event.date %>
+                                        </p>
+                                        <p><span class="event-tags">Horario: </span>
+                                            <%= event.time %>
+                                        </p>
+                                    </div>
+                                    <div class="mx-3">
+                                        <div>
+                                            <p><span class="event-tags">Categoría: </span>
+                                                <%= event.category %>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p><span class="event-tags">Tag: </span>
+                                                <%= event.tag %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="event-comments right-align mx-5 mb-3">Creado
+                                        <%= moment(event.createdAt).fromNow() %>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <% }); %>
                         <% } %>
         </div>
