@@ -30,7 +30,14 @@ var event_Schema = new mongoose.Schema({
             ref: "Comment"
         }
     ],
-    amountOfComments: Number
+    amountOfComments: Number,
+    amountOfApplications: Number,
+    applications: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ]
 });
 
 module.exports = mongoose.model("Event", event_Schema);

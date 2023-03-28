@@ -27,6 +27,7 @@ router.post('/crear', isLoggedIn, async (req, res) => {
     const event = new Event(req.body.event);
     event.organizer = req.user._id;
     event.amountOfComments = 0;
+    event.amountOfApplications = 0;
 
     const [new_event, e] = await handle(event.save());
 
@@ -40,13 +41,18 @@ router.post('/crear', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    let [event, e] = await handle(Event.findOne({ _id: req.params.id }).populate(['organizer']).populate({ path: 'comments', populate: { path: 'author' }, options: { sort: { 'createdAt': 'desc' } } }).exec());
+    const [event, e] = await handle(Event.findOne({ _id: req.params.id }).populate(['organizer']).populate({ path: 'comments', populate: { path: 'author' }, options: { sort: { 'createdAt': 'desc' } } }).exec());
     if (e || event === null) {
         console.log(e);
         return;
     }
 
-    res.render('events/detail', { event, user: req.user });
+    var applied = false;
+    if (event.applications && req.user && event.applications.includes(req.user._id)) {
+        applied = true;
+    }
+
+    res.render('events/detail', { event, user: req.user, applied });
 });
 
 router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
@@ -58,7 +64,54 @@ router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
     }
 
     await Comment.deleteMany({ _id: { $in: event_deleted.comments } });
+
     res.redirect('/eventos');
+});
+
+router.post('/:id/aplicar', isLoggedIn, async (req, res) => {
+    const [event, e_event] = await handle(Event.findOne({ _id: req.params.id }).exec());
+
+    if (e_event || event === null) {
+        console.log(e_event);
+        return;
+    }
+    event.applications.push(req.user._id);
+    event.amountOfApplications = event.amountOfApplications + 1;
+
+    const [_, e_event_saved] = await handle(event.save());
+
+    if (e_event_saved) {
+        console.log(e_event_saved);
+        return;
+    }
+    console.log("Aplicado a evento");
+    res.redirect(`/eventos/${req.params.id}`);
+});
+
+router.delete('/:id/desaplicar', isLoggedIn, async (req, res) => {
+    const [event, e_event] = await handle(Event.updateOne({  _id: req.params.id  }, { '$pull': { applications: req.user._id } }).exec());
+
+    if (e_event || event === null) {
+        console.log(e_event);
+        return;
+    }
+
+    const [event_app, e_event_app] = await handle(Event.findOne({ _id: req.params.id }).exec());
+
+    if (e_event_app || event_app === null) {
+        console.log(e_event_app);
+        return;
+    }
+    event_app.amountOfApplications = event_app.amountOfApplications - 1;
+
+    const [_, e_event_saved] = await handle(event_app.save());
+
+    if (e_event_saved) {
+        console.log(e_event_saved);
+        return;
+    }
+
+    res.redirect('back');
 });
 
 router.use('/:id/comentarios/', CommentsController);

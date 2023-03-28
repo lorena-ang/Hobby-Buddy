@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         return;
     }
 
-    res.render('users/events', { events });
+    res.render('users/myevents', { events });
 });
 
 module.exports = router;
