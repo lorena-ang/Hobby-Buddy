@@ -4,13 +4,13 @@ const { handle } = require('../utilis');
 
 const Event = require('../models/event');
 const Comment = require('../models/comment');
-const CommentsController = require('./comments')
+const CommentsController = require('./comments');
+const Application = require('../models/application');
 
 var router = express.Router();
 
 router.get('/', async (req, res) => {
     const [events, e] = await handle(Event.find().populate('organizer').sort({ 'createdAt': 'desc' }));
-
     if (e) {
         console.log(e);
         return;
@@ -84,6 +84,16 @@ router.post('/:id/aplicar', isLoggedIn, async (req, res) => {
         console.log(e_event_saved);
         return;
     }
+
+    const application = new Application({user: req.user._id, event: req.params.id});
+
+    const [new_application, e_app] = await handle(application.save());
+
+    if (e_app) {
+        console.log(e);
+        return;
+    }
+
     console.log("Aplicado a evento");
     res.redirect(`/eventos/${req.params.id}`);
 });
@@ -108,6 +118,13 @@ router.delete('/:id/desaplicar', isLoggedIn, async (req, res) => {
 
     if (e_event_saved) {
         console.log(e_event_saved);
+        return;
+    }
+
+    const [application_deleted, e_app_deleted] = await handle(Application.deleteOne({ user: req.user._id, event: req.params.id }));
+
+    if (e_app_deleted || application_deleted === null) {
+        console.log(e);
         return;
     }
 
