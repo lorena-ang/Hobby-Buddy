@@ -64,7 +64,10 @@
                                                                 </div>
                                                             </div>
                                                             <p class="event-comments right-align mx-5 mb-3">Creado
-                                                                <%= moment(event.createdAt).fromNow() %>
+                                                                <%= moment(event.createdAt).fromNow() %> por <span
+                                                                        class="navbar-link">
+                                                                        <%= event.organizer.name %>
+                                                                    </span>
                                                             </p>
                                                         </div>
                                                     </div>

@@ -20,6 +20,12 @@
                                         <%= event.amountOfApplications %> Aplicantes
                                     </span>
                                 </div>
+                                <% if(event.amountOfApplications>= 1) { %>
+                                    <div class="text-center">
+                                        <a href="/mis_eventos/<%= event._id %>/aplicaciones"
+                                            class="btn btn-outline-light mb-4">Aplicaciones</a>
+                                    </div>
+                                    <% } %>
                             </div>
                             <div class="col-md-8">
                                 <h4 class="card-title mt-3 mx-3"><a href="/eventos/<%= event._id %>">

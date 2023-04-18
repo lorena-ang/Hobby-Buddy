@@ -1,0 +1,33 @@
+<%- include (".././partials/header") %>
+    <title>HobbyBuddy | Solicitudes</title>
+    <%- include (".././partials/navbar") %>
+
+        <h1>Solicitudes</h1>
+
+        <% if(applications) { %>
+            <% applications.forEach(app=> { %>
+                <h3>
+                    <%= app.user.name %>
+                </h3>
+                <h6>
+                    <%= app.user.location %>
+                </h6>
+                <p>
+                    <%= app.user.about_me %>
+                </p>
+                <!-- Check if it has been approved or not -->
+                <% if(app.status==false) { %>
+                    <form action="/mis_eventos/<%= event_id %>/aplicaciones/<%= app._id %>" method="POST">
+                        <button class="btn btn-outline-light-2">Aprobar</button>
+                    </form>
+                    <% }else{ %>
+                        <h2>APROBADO</h2>
+                        <h3>
+                            <%= app.user.contact %>
+                        </h3>
+                        <% } %>
+                            <div style="height: 100px;"></div>
+                            <% }); %>
+                                <% } %>
+
+                                    <%- include (".././partials/footer") %>

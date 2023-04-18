@@ -20,6 +20,10 @@
                                         <%= event.amountOfApplications %> Aplicantes
                                     </span>
                                 </div>
+                                <form class="text-center" action="/eventos/<%= event._id %>/desaplicar?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-outline-light-2 mb-4">Desaplicar</button>
+                                </form>
                             </div>
                             <div class="col-md-8">
                                 <h4 class="card-title mt-3 mx-3"><a href="/eventos/<%= event._id %>">
