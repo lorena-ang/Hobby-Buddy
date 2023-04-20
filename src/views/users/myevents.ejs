@@ -64,6 +64,12 @@
                     </div>
                     <% }); %>
                         <% } %>
+                            <% if (events.length < 1) { %>
+                                <p class="text-center my-4" style="padding-bottom: 420px;">No has publicado
+                                    ninguna actividad. Conecta con personas creando una nueva actividad en la página
+                                    principal.
+                                </p>
+                                <% } %>
         </div>
 
         <%- include (".././partials/footer") %>

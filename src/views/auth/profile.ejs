@@ -1,0 +1,37 @@
+<%- include (".././partials/header") %>
+    <title>HobbyBuddy | Mi perfil</title>
+    <%- include (".././partials/navbar") %>
+
+        <div class="container p-5 mb-5 h-100">
+            <div class="row px-5 mb-5">
+                <div class="col px-5 mx-5 mb-5">
+                    <% if(current_user !=undefined) { %>
+                        <h2 class="text-center pb-3">Mi Perfil</h2>
+                        <div class="card profile-card">
+                            <div class="mx-2 px-5 pt-5 pb-4">
+                                <p><span class="event-tags">Usuario: </span>
+                                    <%= current_user.name %>
+                                </p>
+                                <p><span class="event-tags">Correo electrónico: </span>
+                                    <%= current_user.email %>
+                                </p>
+                                <p><span class="event-tags">Nombre: </span>
+                                    <%= current_user.profile_name %>
+                                </p>
+                                <p><span class="event-tags">Ubicación: </span>
+                                    <%= current_user.location %>
+                                </p>
+                                <p><span class="event-tags">Información de Contacto: </span>
+                                    <%= current_user.contact %>
+                                </p>
+                                <p><span class="event-tags">Sobre mí: </span>
+                                    <%= current_user.about_me %>
+                                </p>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+
+        <%- include (".././partials/footer") %>

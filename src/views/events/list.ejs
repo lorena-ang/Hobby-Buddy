@@ -11,13 +11,14 @@
                             <h2 class="text-center pb-1">Bienvenido a HobbyBuddy</h2>
                             <% if(current_user){ %>
                                 <div class="text-center">
-                                    <a href="/eventos/crear" class="btn btn-outline-light px-4 mb-4">Crear
+                                    <a href="/eventos/crear" class="btn btn-outline-light px-4">Crear
                                         publicación</a>
                                 </div>
                                 <% } %>
                                     <% if(events) { %>
                                         <% events.forEach(event=> { %>
-                                            <div class="card event-card border-0 mx-5" style="margin-bottom: 30px;">
+                                            <div class="card event-card border-0 mx-5 mt-4"
+                                                style="margin-bottom: 30px;">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <a href="/eventos/<%= event._id %>"><input type="image"
