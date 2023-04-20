@@ -2,32 +2,44 @@
     <title>HobbyBuddy | Solicitudes</title>
     <%- include (".././partials/navbar") %>
 
-        <h1>Solicitudes</h1>
-
-        <% if(applications) { %>
-            <% applications.forEach(app=> { %>
-                <h3>
-                    <%= app.user.name %>
-                </h3>
-                <h6>
-                    <%= app.user.location %>
-                </h6>
-                <p>
-                    <%= app.user.about_me %>
-                </p>
-                <!-- Check if it has been approved or not -->
-                <% if(app.status==false) { %>
-                    <form action="/mis_eventos/<%= event_id %>/aplicaciones/<%= app._id %>" method="POST">
-                        <button class="btn btn-outline-light-2">Aprobar</button>
-                    </form>
-                    <% }else{ %>
-                        <h2>APROBADO</h2>
-                        <h3>
-                            <%= app.user.contact %>
-                        </h3>
-                        <% } %>
-                            <div style="height: 100px;"></div>
+        <div class="container p-5 mb-5 h-100">
+            <div class="row px-5 mb-5">
+                <div class="col px-5 mx-5 mb-5">
+                    <h2 class="text-center pb-3">Aplicaciones</h2>
+                    <% if(applications) { %>
+                        <% applications.forEach(app=> { %>
+                            <div class="card profile-card mb-4">
+                                <div class="row px-5 pt-3 pb-1">
+                                    <div class="col">
+                                        <p><span class="event-tags">Usuario: </span>
+                                            <%= app.user.name %>
+                                        </p>
+                                        <p><span class="event-tags">Ubicación: </span>
+                                            <%= app.user.location %>
+                                        </p>
+                                        <p><span class="event-tags">Sobre mí: </span>
+                                            <%= app.user.about_me %>
+                                        </p>
+                                    </div>
+                                    <div class="col right-align">
+                                        <% if(app.status==false) { %>
+                                            <form action="/mis_eventos/<%= event_id %>/aplicaciones/<%= app._id %>"
+                                                method="POST">
+                                                <button class="btn btn-outline-light-2 ">Aprobar</button>
+                                            </form>
+                                            <% }else{ %>
+                                                <p class="h4">APROBADO</p>
+                                                <p><span class="event-tags">Contacto: </span>
+                                                    <%= app.user.contact %>
+                                                </p>
+                                                <% } %>
+                                    </div>
+                                </div>
+                            </div>
                             <% }); %>
                                 <% } %>
+                </div>
+            </div>
+        </div>
 
-                                    <%- include (".././partials/footer") %>
+        <%- include (".././partials/footer") %>
