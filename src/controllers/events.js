@@ -36,6 +36,7 @@ router.post('/crear', isLoggedIn, async (req, res) => {
         return;
     }
 
+    req.flash('success', 'Publicación creada exitosamente.')
     console.log('Evento creado');
     res.redirect(`/eventos/${new_event._id}`);
 });
@@ -64,6 +65,7 @@ router.delete('/:id', isLoggedIn, isEventOrganizer, async (req, res) => {
     }
 
     await Comment.deleteMany({ _id: { $in: event_deleted.comments } });
+    req.flash('success', 'Publicación eliminada exitosamente.')
 
     res.redirect('/eventos');
 });

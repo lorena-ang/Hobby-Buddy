@@ -10,7 +10,7 @@
                         <% applications.forEach(app=> { %>
                             <div class="card profile-card mb-4">
                                 <div class="row px-5 pt-3 pb-1">
-                                    <div class="col">
+                                    <div class="col-8">
                                         <p><span class="event-tags">Usuario: </span>
                                             <%= app.user.name %>
                                         </p>
@@ -21,7 +21,7 @@
                                             <%= app.user.about_me %>
                                         </p>
                                     </div>
-                                    <div class="col right-align">
+                                    <div class="col-4 right-align">
                                         <% if(app.status==false) { %>
                                             <form action="/mis_eventos/<%= event_id %>/aplicaciones/<%= app._id %>"
                                                 method="POST">

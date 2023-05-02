@@ -42,6 +42,11 @@ select {
     color: rgb(170, 170, 170) !important;
 }
 
+.alert {
+    height: 55px;
+    margin-bottom: 0px;
+}
+
 .btn-custom {
     background-color: #49a09d;
     border: none;

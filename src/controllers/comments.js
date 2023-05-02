@@ -42,7 +42,8 @@ router.post('/', isLoggedIn, async (req, res) => {
 
 router.delete('/:commentId', isLoggedIn, isCommentAuthor, async (req, res) => {
     await Comment.findByIdAndDelete(req.params.commentId);
-    console.log("Comentario borrado");
+    req.flash('success', 'Comentario eliminado exitosamente.');
+    console.log("Comentario eliminado");
     
     const [event, e_event] = await handle(Event.findOne({ _id: req.params.id }).exec());
 
