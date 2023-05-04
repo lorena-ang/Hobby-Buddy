@@ -1,1 +1,18 @@
-<h1>ERROR</h1>
+<%- include ("./partials/header") %>
+    <title>HobbyBuddy | ERROR</title>
+    <% if(!current_user){ %>
+        <%- include ("./partials/navbar-login") %>
+            <% }else{ %>
+                <%- include ("./partials/navbar") %>
+                    <% } %>
+
+                        <div class="container p-5 mb-5 h-100">
+                            <div class="row px-5 mb-5">
+                                <div class="col text-center px-5 m-5">
+                                    <h1>ERROR 404</h1>
+                                    <p>Ups, algo salió mal. Por favor intenta de nuevo después.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%- include ("./partials/footer") %>
