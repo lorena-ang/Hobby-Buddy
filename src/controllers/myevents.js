@@ -21,6 +21,7 @@ router.get('/:id/aplicaciones', isLoggedIn, async (req, res) => {
     // Getting the applications from the event
     const [applications, e] = await handle(Application.find({ event: req.params.id}).populate('user').sort({ 'user' : -1 }));
     if (e) {
+        res.render('error');
         console.log(e);
         return;
     }

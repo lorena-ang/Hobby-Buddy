@@ -44,8 +44,6 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.use(User.createStrategy());
 
 passport.use(new LocalStrategy({
     usernameField: 'email'
@@ -86,7 +84,6 @@ mongoose.connect(dbUrl, {
         console.log(`DB Connection Error: ${err.message}`);
         process.exit(1);
     });
-
 
 app.get("*", (req, res) => {
     res.render('error');

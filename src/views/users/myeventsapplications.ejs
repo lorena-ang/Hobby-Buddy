@@ -2,10 +2,11 @@
     <title>HobbyBuddy | Solicitudes</title>
     <%- include (".././partials/navbar") %>
 
-        <div class="container p-5 mb-5 h-100">
-            <div class="row px-5 mb-5">
-                <div class="col px-5 mx-5 mb-5">
-                    <h2 class="text-center pb-3">Aplicaciones</h2>
+        <div class="container p-5 h-100">
+            <div class="row px-5">
+                <div class="col px-5 mx-5">
+                    <h2 class="text-center">Aplicaciones</h2>
+                    <p class="text-center pb-3">¡Recuerda contactar a las personas que aprobaste!</p>
                     <% if(applications) { %>
                         <% applications.forEach(app=> { %>
                             <div class="card profile-card mb-4">

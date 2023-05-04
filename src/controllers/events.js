@@ -45,6 +45,7 @@ router.get('/:id', async (req, res) => {
     const [event, e] = await handle(Event.findOne({ _id: req.params.id }).populate(['organizer']).populate({ path: 'comments', populate: { path: 'author' }, options: { sort: { 'createdAt': 'desc' } } }).exec());
     if (e || event === null) {
         console.log(e);
+        res.render('error');
         return;
     }
 

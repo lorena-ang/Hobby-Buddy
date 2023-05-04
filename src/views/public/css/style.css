@@ -29,6 +29,10 @@ a:hover {
     text-decoration: none;
 }
 
+footer {
+    height: 92px;
+}
+
 input[type=text],
 textarea {
     background-color: var(--bg-color-1) !important;
@@ -77,6 +81,14 @@ select {
 
 .btn-submit {
     width: 100%;
+}
+
+.main-content
+{
+    min-height: 70%;
+    min-height: -webkit-calc(100% - 186px);
+    min-height: -moz-calc(100% - 186px);
+    min-height: calc(100vh - 92px);
 }
 
 .comment-card {

@@ -39,7 +39,6 @@ router.post('/registro', async (req, res) => {
                 }
                 else {
                     console.log(new_user)
-                    req.flash('success', '¡Bienvenid@ a Hobby Buddy, ' + req.user.name + '!')
                 }
                 return res.redirect('/mi_info');
             });
@@ -75,7 +74,13 @@ router.get('/iniciar_sesion', (req, res) => {
 router.post('/iniciar_sesion', passport.authenticate('local', { failureFlash: 'El correo electrónico o la contraseña son incorrectos.', failureRedirect: '/iniciar_sesion' }), (req, res) => {
     console.log('Sesión iniciada ' + req.user.name);
     req.flash('success', '¡Bienvenid@ de nuevo, ' + req.user.name + '!');
-    res.redirect('/eventos');
+    if (!req.user.location) {
+        console.log('Usuario no había terminado de registrar su información');
+        res.redirect('/mi_info');
+    }
+    else {
+        res.redirect('/eventos');
+    }
 });
 
 router.get('/cerrar_sesion', (req, res) => {
@@ -83,6 +88,10 @@ router.get('/cerrar_sesion', (req, res) => {
         if (e) {
             console.log('Error: ' + e.message);
             req.flash('error', e.message)
+        }
+        else {
+            console.log('Sesión terminada exitosamente');
+            req.flash('success', 'Sesión terminada exitosamente.')
         }
         res.redirect('/eventos');
     });
@@ -112,7 +121,6 @@ router.post('/mi_info', isLoggedIn, isNew, async (req, res) => {
     }
 
     console.log('Información guardada');
-    req.flash('success', '¡Bienvenid@ a Hobby Buddy, ' + req.user.name + '!')
     res.redirect('/eventos');
 });
 

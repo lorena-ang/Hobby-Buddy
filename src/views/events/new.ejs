@@ -27,14 +27,14 @@
                         <div class="form-group mb-3">
                             <label for="event-category">Tipo de evento: </label>
                             <input type="radio" class="form-radio" id="event-category" name="event[category]"
-                                value="Presencial"><span class="label-secondary">Presencial</span>
+                                value="Presencial" required><span class="label-secondary">Presencial</span>
                             <input type="radio" class="form-radio" id="event-category" name="event[category]"
                                 value="Virtual"><span class="label-secondary">Virtual</span>
                         </div>
                         <div class="form-group mb-3">
                             <label for="event-tag" class="form-label">Tag:</label>
                             <select id="event-tag" class="form-select" name="event[tag]" required>
-                                <option selected="true" disabled="disabled">
+                                <option selected="true" disabled="disabled" value="">
                                     Selecciona una opción.</option>
                                 <option value="Aprendizaje">Aprendizaje</option>
                                 <option value="Actividad física">Actividad Física</option>
